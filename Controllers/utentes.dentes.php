@@ -6,4 +6,4 @@ use Miguel\ProjetoFinal\Database\QueryBuilder;
 $connection = Connection::make();
 $queryBuilder = new QueryBuilder($connection);
 
-$queryBuilder->
+// $queryBuilder->
