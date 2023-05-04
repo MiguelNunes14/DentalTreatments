@@ -15,6 +15,14 @@ class QueryBuilder
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_CLASS, $class);
     }
+
+    public function getTratamentos($utente_id, $FDI, $class = "StdClass"){
+        $stmt = $this -> pdo -> prepare("SELECT * FROM Tratamentos WHERE Utente_id = :utente AND FDI = :fdi AND Date =  DATE_SUB(curdate() ,INTERVAL 6 MONTH) ORDER BY Date");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
+        $stmt -> execute(['utente' => $utente_id],
+                         ['fdi' => $FDI]);
+        return $stmt->fetch();
+    }
     
     public function login($table, $username, $column1, $column2, $class = "StdClass") {
         // Procura o utente pelo nome de utilizador ou outro campo

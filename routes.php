@@ -38,18 +38,22 @@ $router->get('logout', function(){
 });
 
 $router->get('utentes/dentes', function(){
-    require 'Views/utentes.home.view.php';
+    if(isset($_SESSION['Utente_id'], $_SESSION['Utente'], $_SESSION['Email'])){
+        require 'Views/utentes.home.view.php';
+    }else{
+        redirect('utentes/login');
+    }
 });
 
 $router->get('utentes/dentes/Denticao_Decidua', function($FDI){
     require 'Views/utentes.denticao_decidua.php';
 });
 
-$router->get('utentes/dentes/(\d+)', function($FDI){
-    require 'Controllers/utentes.dentes.php';
+$router->get('utentes/dentes/get.json', function(){
+    require 'Controllers/utentes.get.json.php';
 });
 
-$router->get('utentes/dentes/Denticao_Permanente', function($FDI){
+$router->get('utentes/dentes/Denticao_Permanente', function(){
     require 'Views/utentes.denticao_permanente.php';
 });
 ?>
