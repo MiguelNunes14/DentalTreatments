@@ -17,7 +17,7 @@ class QueryBuilder
     }
 
     public function getTratamentos($utente_id, $FDI, $class = "StdClass"){
-        $stmt = $this -> pdo -> prepare("SELECT * FROM Tratamentos WHERE Utente_id = :utente AND FDI = :fdi AND Date =  DATE_SUB(curdate() ,INTERVAL 6 MONTH) ORDER BY Date");
+        $stmt = $this -> pdo -> prepare("SELECT * from Tratamentos T where Utente_Id = :utente AND FDI = :fdi AND Data > DATE_SUB(curdate() ,INTERVAL 6 MONTH) ORDER BY Data");
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         $stmt -> execute(['utente' => $utente_id],
                          ['fdi' => $FDI]);

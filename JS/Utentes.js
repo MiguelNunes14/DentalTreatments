@@ -45,21 +45,4 @@ if(sum == 0 || sum == 1){
   }
 }
 
-$(document).ready(function() {
-  $('#meuBotao').click(function() {
-    $.ajax({
-      url: 'utentes/dentes/(\d+).php', // Substitua pelo URL da página PHP que lida com o pedido
-      method: 'Get', // Ou 'GET' se preferir
-      data: {
-        parametro1: 'valor1',
-        parametro2: 'valor2'
-        // Substitua pelos parâmetros e valores que deseja enviar para a página PHP
-      },
-      success: function(resultado) {
-        // Aqui você pode manipular o resultado retornado pela página PHP
-        console.log(resultado); // Exibe o resultado no console do navegador
-      }
-    });
-  });
-});
 }

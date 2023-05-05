@@ -49,7 +49,7 @@ $router->get('utentes/dentes/Denticao_Decidua', function($FDI){
     require 'Views/utentes.denticao_decidua.php';
 });
 
-$router->get('utentes/dentes/get.json', function(){
+$router->post('utentes/dentes/get.json', function(){
     require 'Controllers/utentes.get.json.php';
 });
 

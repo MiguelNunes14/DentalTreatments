@@ -57,10 +57,6 @@
                     </div>
                 </div>
             </div>
-            <?php echo var_dump($_SESSION['Utente_id']);
-            echo var_dump($_SESSION['Utente']);
-            echo var_dump($_SESSION['Email']);
-      ?>
         </div>
     </main>
     
