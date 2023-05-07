@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo route('CSS/home.css'); ?>">
-    <title>Login de Utente</title>
+    <title>Denticão Permanente</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: lightblue;">
@@ -49,7 +49,7 @@
                             <area target="" class="Dente" alt="Incisivo Central Sup. Dto. | 11" title="Incisivo Central Sup. Dto. | 11" href="" denteId="11" coords="214,78,211,66,199,59,185,63,178,76,177,83,186,86,203,86" shape="poly">
                             <area target="" class="Dente" alt="Incisivo Central Sup. Esq | 21" title="Incisivo Central Sup. Esq | 21" href="" denteId="21" coords="220,79,220,66,234,60,249,66,255,80,234,89" shape="poly">
                             <area target="" class="Dente" alt="Incisivo Lateral Sup. Esq. | 22" title="Incisivo Lateral Sup. Esq. | 22" href="" denteId="22" coords="269,75,257,74,250,88,254,97,263,97,278,99,278,83" shape="poly">
-                            <area target="" class="Dente" alt="Canino Sup. Esq. | 23" title="Canino Sup. Esq. | 23" href="" denteId="23" coords="281,95,282,87,293,89,301,109,297,121,286,115,267,108" shape="poly">
+                            <area target="" class="Dente" alt="Canino Sup. Esq. | 23" title="Canino Sup. Esq. | 23" denteId="23" href="" coords="281,95,282,87,293,89,301,109,297,121,286,115,267,108" shape="poly">
                             <area target="" class="Dente" alt="1º Pré-Molar Sup. Esq. | 24" title="1º Pré-Molar Sup. Esq. | 24" href="" denteId="24" coords="298,121,304,114,314,119,319,141,304,149,287,149,284,133" shape="poly">
                             <area target="" class="Dente" alt="2º Pré-Molar Sup. Esq. | 25" title="2º Pré-Molar Sup. Esq. | 25" href="" denteId="25" coords="310,147,321,141,327,146,326,170,312,174,302,175,292,167,294,153" shape="poly">
                             <area target="" class="Dente" alt="1º Molar Sup. Esq. | 26" title="1º Molar Sup. Esq. | 26" href="" denteId="26" coords="327,165,335,177,339,188,340,201,328,209,312,216,302,208,294,192,296,180" shape="poly">
@@ -75,7 +75,9 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div id="Tratamentos"></div>
+                    <table id="Tratamentos" class="table">
+                        <tr><td><h3>Utente</h3></td> <td><h3> Dente</h3></td> <td><h3> Problema</h3></td> <td><h3> Tratamento</h3></td> <td><h3> Médico</h3></td> <td><h3> Data</h3></td></tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -85,19 +87,28 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="<?php echo route('JS/Utentes.js'); ?>"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.4.min.js"
+			  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+			  crossorigin="anonymous"></script>
     <script>
-            $('.Dente').click(function() {
+            $('.Dente').click(function(event) {
+                // alert('Olá');
                 $.ajax({
                     url: "<?php echo route('utentes/dentes/get.json'); ?>",
                     method: 'post',
-                    data: {id: $(this).attr('denteId')},
+                    data: {id : $(this).attr('denteId')},
                     dataType: 'json',
                     success: function(result) {
                 // atualize o conteúdo HTML com as informações do dente
                 console.log(result);
-                        $('#Tratamentos').html('<tr><td><h2>' + result[0].Utente + '</h2><p>' + result[0].Medico + '</p></td></tr>');
+                        $('#Tratamentos').html('<ttbody><tr><td><h3>Utente</h3></td> <td><h3> Dente</h3></td> <td><h3> Problema</h3></td> <td><h3> Tratamento</h3></td> <td><h3> Médico</h3></td> <td><h3> Data</h3></td></tr>');
+                        for(i = 0; i < result.length; i++){
+                            $('#Tratamentos').append('<tr><td>' + result[i].Utente.Nome +'</td> <td>' + result[i].Dente.Dente +'</td> <td>' + result[i].Problema.Problema +'</td> <td>' + result[i].Tratamento +'</td> <td>' + result[i].Medico.Nome +'</td> <td>' + result[i].Data +'</td></tr>');
+                        }
                     }
                 });
+                event.preventDefault();
             });
     </script>
     

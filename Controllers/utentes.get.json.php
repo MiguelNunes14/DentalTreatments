@@ -9,12 +9,14 @@ $connection = Connection::make();
 
 $queryBuilder = new QueryBuilder($connection);
 
-$tratamentos = $queryBuilder->getTratamentos($_SESSION['Utente_id'], $_POST['id']);
+$tratamentos = $queryBuilder->getTratamentos($_SESSION['Utente_id'], $_POST['id'], 'Miguel\ProjetoFinal\Model\Tratamentos');
 
-$tratamento->Utente = $queryBuilder->findById('Utentes', $tratamento->Utente_Id, 'Miguel\ProjetoFinal\Model\Utentes');
-$tratamento->Dente = $queryBuilder->findById('Dentes', $tratamento->FDI, 'Miguel\ProjetoFinal\Model\Dentes');
-$tratamento->Problema = $queryBuilder->findById('Problemas', $tratamento->Problema_id, 'Miguel\ProjetoFinal\Model\Problemas');
-$tratamento->Medico = $queryBuilder->findById('Medicos', $tratamento->Medico_id, 'Miguel\ProjetoFinal\Model\Medicos');
+foreach($tratamentos as $tratamento){
+    $tratamento->Utente = $queryBuilder->findById('Utentes', $tratamento->Utente_id, 'Miguel\ProjetoFinal\Model\Utentes');
+    $tratamento->Dente = $queryBuilder->getFirst('Dentes', 'FDI', $tratamento->FDI, 'Miguel\ProjetoFinal\Model\Dentes');
+    $tratamento->Problema = $queryBuilder->findById('Problemas', $tratamento->Problema_id, 'Miguel\ProjetoFinal\Model\Problemas');
+    $tratamento->Medico = $queryBuilder->findById('Medicos', $tratamento->Medico_id, 'Miguel\ProjetoFinal\Model\Medicos');
+}
 
 
 // Converte os dados dos tratamentos para formato JSON e envia a resposta

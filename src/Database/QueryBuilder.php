@@ -17,11 +17,11 @@ class QueryBuilder
     }
 
     public function getTratamentos($utente_id, $FDI, $class = "StdClass"){
-        $stmt = $this -> pdo -> prepare("SELECT * from Tratamentos T where Utente_Id = :utente AND FDI = :fdi AND Data > DATE_SUB(curdate() ,INTERVAL 6 MONTH) ORDER BY Data");
+        $stmt = $this -> pdo -> prepare("SELECT * from Tratamentos T where Utente_id = :utente AND FDI = :fdi AND Data > DATE_SUB(curdate() ,INTERVAL 6 MONTH) ORDER BY Data");
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
-        $stmt -> execute(['utente' => $utente_id],
-                         ['fdi' => $FDI]);
-        return $stmt->fetch();
+        $stmt -> execute(['utente' => $utente_id,
+                         'fdi' => $FDI]);
+        return $stmt->fetchAll();
     }
     
     public function login($table, $username, $column1, $column2, $class = "StdClass") {
@@ -33,11 +33,19 @@ class QueryBuilder
     }
     
     public function findById($table,$id,$class = "StdClass") {
-        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE id=:id");
+        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE Id=:id");
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         $stmt->execute(['id'=>$id]);
         return $stmt->fetch();
     }
+
+    public function getFirst($table,$column, $column_value, $class = "StdClass") {
+        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE $column=:id");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
+        $stmt->execute(['id'=>$column_value]);
+        return $stmt->fetch();
+    }
+
     public function deleteById($table,$id) {
         $stmt = $this->pdo->prepare("DELETE FROM $table WHERE id=:id");
         $stmt->execute(['id'=>$id]);

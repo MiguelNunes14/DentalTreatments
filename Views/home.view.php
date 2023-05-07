@@ -26,6 +26,9 @@
               <li class="nav-item ms-2 mt-1">
                   <a class="btn btn-outline-secondary me-2" href="<?php echo route('utentes/create') ?>">Criar Conta</a>
               </li>
+              <li class="nav-item ms-2 mt-1">
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('medicos/create') ?>">Criar Conta de Médico</a>
+              </li>
           </ul>
       </div>
   </nav>
