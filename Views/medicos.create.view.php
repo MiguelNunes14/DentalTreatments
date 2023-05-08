@@ -20,6 +20,19 @@
           <a class="nav-link" href="<?php echo route(''); ?>">Página Inicial</a>
         </li>
       </ul>
+      <div class="justify-content-end collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+              <li class="nav-item ms-2 mt-1">
+              <?php
+                if(isset($_SESSION['Admin'])){
+                ?>
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('logout') ?>">Logout</a>
+                <?php 
+                }
+                ?>
+              </li>
+          </ul>
+      </div>
     </div>
   </nav>
     <main class="main">

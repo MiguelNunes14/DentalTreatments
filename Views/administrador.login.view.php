@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo route('CSS/home.css'); ?>">
-    <title>Login Médicos</title>
+    <title>Login Administrador</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: lightblue;">
@@ -26,14 +26,14 @@
   <main class="main">
         <img class="img-bg" src="<?php echo route('Images/sorriso.png'); ?>" alt="">
         <div class="conteudo">
-            <form action="<?php echo route('medicos/login/process') ?>" method="post">
+            <form action="<?php echo route('administrador/login/process') ?>" method="post">
             <table class="table table-borderless d-table-cell">
                     <tr>
-                        <th colspan="2"><h3>Login de Médico</h3></th>
+                        <th colspan="2"><h3>Login de Administrador</h3></th>
                     </tr>
                    <tr>
-                    <td><label for="NºMecanografico">Número Mecanográfico</label></td>
-                    <td><input type="tel" class="form-control" name="NºMecanografico" id="NºMecanografico" placeholder="Número Mecanográfico" required></td>
+                    <td><label for="Utilizador">Utilizador</label></td>
+                    <td><input type="tel" class="form-control" name="Utilizador" id="Utilizador" placeholder="Nome de Utilizador" required></td>
                    </tr>
                    <tr>
                     <td><label for="Password">Password</label></td>

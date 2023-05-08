@@ -6,23 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo route('CSS/home.css'); ?>">
-    <title>Página Inicial Utente</title>
+    <title>Página Inicial Médico</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: lightblue;">
-    <a class="navbar-brand ms-2 " href="<?php echo route('utentes/dentes'); ?>"><img class="me-2" width="40" height="40" src="<?php echo route('Images/dente.png'); ?>" alt=""><b>DENTAL TREATMENTS</b></a>
+    <a class="navbar-brand ms-2 " href="<?php echo route('medicos/dentes'); ?>"><img class="me-2" width="40" height="40" src="<?php echo route('Images/dente.png'); ?>" alt=""><b>DENTAL TREATMENTS</b></a>
     <button class="navbar-toggler me-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ">
         <li class="nav-item active ms-2 mt-1">
-          <a class="nav-link" href="<?php echo route('utentes/dentes'); ?>">Página Inicial</a>
+          <a class="nav-link" href="<?php echo route('medicos/dentes'); ?>">Página Inicial</a>
         </li>
       </ul>
     </div>
     <div class="justify-content-end collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
+              <li class="nav-item ms-2 mt-1">
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('medicos/Alterar_Eliminar') ?>">Alterar ou Eliminar Tratamento</a>
+              </li>
+            <li class="nav-item ms-2 mt-1">
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('medicos/Inserir') ?>">Inserir Tratamento</a>
+              </li>
               <li class="nav-item ms-2 mt-1">
                   <a class="btn btn-outline-secondary me-2" href="<?php echo route('logout') ?>">Logout</a>
               </li>
@@ -36,12 +42,12 @@
             <div class="row">
                 <div class="col-6">
                     <div style="display:flex; justify-content: center;">
-                        <a title="Dentição Permanente"  href="<?php echo route('utentes/dentes/Denticao_Permanente') ?>"><img src="<?php echo route('Images/Dentição Permanente.png') ?>" alt=""></a>
+                        <a title="Dentição Permanente"  href="<?php echo route('medicos/dentes/Denticao_Permanente') ?>"><img src="<?php echo route('Images/Dentição Permanente.png') ?>" alt=""></a>
                     </div>
                 </div>
                 <div class="col-6">
                     <div style="display:flex; justify-content: center;">
-                        <a title="Dentição Decídua" href="<?php echo route('utentes/dentes/Denticao_Decidua') ?>"><img src="<?php echo route('Images/Dentição Decídua.png') ?>" alt=""></a>
+                        <a title="Dentição Decídua" href="<?php echo route('medicos/dentes/Denticao_Decidua') ?>"><img src="<?php echo route('Images/Dentição Decídua.png') ?>" alt=""></a>
                     </div>
                 </div>
             </div>

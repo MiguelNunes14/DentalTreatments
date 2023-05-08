@@ -7,7 +7,7 @@
     $queryBuilder = new QueryBuilder($connection);
    
     if(isset($_POST['Password'])){
-        $medico = $queryBuilder->login('Medicos',$_POST['NºMecanografico'], 'N_Mecanografico', 'Email', 'Miguel\ProjetoFinal\Model\Medicos');
+        $medico = $queryBuilder->login1Field('Medicos',$_POST['NºMecanografico'], 'N_Mecanografico', 'Miguel\ProjetoFinal\Model\Medicos');
 
         if($medico === false){
             redirect('medicos/login');
@@ -16,7 +16,7 @@
 
         if($_POST['Password'] && password_verify($_POST['Password'], $medico->Password)){
             $_SESSION['Medico_id'] = $medico->Id;
-            $_SESSION['Utente'] = $medico->Nome;
+            $_SESSION['Medico'] = $medico->Nome;
             $_SESSION['NºMecanografico'] = $medico->N_Mecanografico;
             redirect('medicos/dentes');
         }

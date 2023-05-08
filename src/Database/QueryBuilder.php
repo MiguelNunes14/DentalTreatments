@@ -32,6 +32,14 @@ class QueryBuilder
         return $stmt->fetch();
     }
     
+    public function login1Field($table, $username, $column, $class = "StdClass") {
+        // Procura o utente pelo nome de utilizador ou outro campo
+        $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE $column = :utilizador");
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
+        $stmt->execute(['utilizador' => $username]);
+        return $stmt->fetch();
+    }
+    
     public function findById($table,$id,$class = "StdClass") {
         $stmt = $this->pdo->prepare("SELECT * FROM $table WHERE Id=:id");
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);

@@ -6,7 +6,7 @@ use Miguel\ProjetoFinal\Database\QueryBuilder;
 $connection = Connection::make();
 $queryBuilder = new QueryBuilder($connection);
 
-$queryBuilder->create('Utentes',[
+$queryBuilder->create('Medicos',[
     'Nome' => $_POST['Nome'],
     'NIF' => $_POST['NIF'],
     'Telefone' => $_POST['Telefone'],

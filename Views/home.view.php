@@ -24,10 +24,40 @@
     <div class="justify-content-end collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
               <li class="nav-item ms-2 mt-1">
-                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('utentes/create') ?>">Criar Conta</a>
+              <?php
+                if(!isset($_SESSION['Admin'])){
+                ?>
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('administrador/login') ?>">Login Administrador</a>
+                <?php 
+                }
+                ?>
               </li>
               <li class="nav-item ms-2 mt-1">
+              <?php
+                if(!isset($_SESSION['Admin'])){
+                ?>
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('utentes/create') ?>">Criar Conta de Utente</a>
+                <?php 
+                }
+                ?>
+              </li>
+              <li class="nav-item ms-2 mt-1">
+                <?php
+                if(isset($_SESSION['Admin'])){
+                ?>
                   <a class="btn btn-outline-secondary me-2" href="<?php echo route('medicos/create') ?>">Criar Conta de Médico</a>
+                <?php 
+                }
+                ?>
+              </li>
+              <li class="nav-item ms-2 mt-1">
+              <?php
+                if(isset($_SESSION['Admin'])){
+                ?>
+                  <a class="btn btn-outline-secondary me-2" href="<?php echo route('logout') ?>">Logout</a>
+                <?php 
+                }
+                ?>
               </li>
           </ul>
       </div>
@@ -38,10 +68,16 @@
   <main class="main">
     <img class="img-bg" src="Images/sorriso.png" alt="">
     <div class="conteudo">
-      <h1 class="text-center" style="margin-top:15vh; font-size:3.5vw; color:grey">LOGIN</h1>
-      <div class="button-center">
-        <a class="btn btn-outline-secondary align-middle buttons" style="border:none;" href="#"><img width="150vh" src="Images/medico.png" alt=""><h2 class="mt-4">Sou um Médico/a</h2></a>
-        <a class="btn btn-outline-secondary align-middle buttons" style="margin-left: 40vh; border:none;" href="<?php echo route('utentes/login'); ?>"><img width="150vh" src="Images/utente.png" alt=""><h2>Sou um Utente</h2></a>
+    <?php
+      if(!isset($_SESSION['Admin'])){
+    ?>
+        <h1 class="text-center" style="margin-top:15vh; font-size:3.5vw; color:grey">LOGIN</h1>
+        <div class="button-center">
+          <a class="btn btn-outline-secondary align-middle buttons" style="border:none;" href="<?php echo route('medicos/login'); ?>"><img width="150vh" src="Images/medico.png" alt=""><h2 class="mt-4">Sou um Médico/a</h2></a>
+          <a class="btn btn-outline-secondary align-middle buttons" style="margin-left: 40vh; border:none;" href="<?php echo route('utentes/login'); ?>"><img width="150vh" src="Images/utente.png" alt=""><h2>Sou um Utente</h2></a>
+    <?php 
+      }
+    ?>
       </div>
     </div>
   </main>
