@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php echo route('CSS/home.css'); ?>">
-    <title>Alterar ou Eliminar Tratamentos</title>
+    <title>Alterar Tratamento</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg sticky-top" style="background-color: lightblue;">
@@ -36,53 +36,39 @@
   <main class="main">
         <img class="img-bg" src="<?php echo route('Images/sorriso.png'); ?>" alt="">
         <div class="conteudo">
-            <form action="<?php echo route('medicos/Alterar_Eliminar/pesquisar') ?>" method="post">
+            <form action="<?php echo route('medicos/Alterar/Process/' . $tratamento->Id); ?>" method="post">
                 <table class="table table-borderless d-table-cell">
                     <tr>
-                        <td><label for="NIF" class="ms-2 mt-2"><h4>NIF do Utente</h4></label></td> 
-                        <td><input class="form-control mt-2 ms-2" type="tel" name="NIF" id="NIF" style="width: 300px" placeholder="Inserir NIF do Utente"></td>
+                        <td><label for="NIF"><h4>NIF do Utente</h4></label></td>
+                        <td><input class="form-control ms-2 mt-2" type="text" name="NIF" id="NIF" style="width: 300px" placeholder="<?php echo $tratamento->Utente->Nome?>"></td>
                     </tr>
                     <tr>
                         <td><label for="FDI"><h4>Número do Dente</h4></label></td>
                         <td><input class="form-control ms-2 mt-2" type="tel" name="FDI" id="FDI" style="width: 300px" placeholder="Inserir Número do dente"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button class="btn btn-outline-primary" type="submit" style="float:right;">Pesquisar</button></td>
+                        <td><label for="Problema" class="ms-2 mt-2"><h4>Problema</h4></label></td> 
+                        <td>
+                            <select class="form-select" name="Problema_id" id="Problema_id">
+                                <?php 
+                                    foreach($Problemas as $Problema){
+                                ?>
+                                        <option value="<?php echo $Problema->Id ?>"><?php echo $Problema-> Problema ?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="Tratamento" class="ms-2 mt-2"><h4>Tratamento</h4></label></td>
+                        <td><textarea class="form-control" name="Tratamento" id="Tratamento" cols="30" rows="2"><?php echo $tratamento->Tratamento; ?></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="btn btn-outline-primary" type="submit" style="float:right;">Alterar</button></td>
                     </tr>
                 </table>
             </form>
-            <hr>
-            <table class="table mt-2">
-                <tr>
-                    <td><h3>Utente</h3></td> 
-                    <td><h3> Dente</h3></td> 
-                    <td><h3> Problema</h3></td> 
-                    <td><h3> Tratamento</h3></td> 
-                    <td><h3> Médico</h3></td> 
-                    <td><h3> Data</h3></td>
-                </tr>
-                <?php
-                    foreach($tratamentos as $tratamento){
-                ?>
-                    <tr>
-                        <td><?php echo $tratamento->Utente->Nome ?></td> 
-                        <td><?php echo $tratamento->Dente->Dente ?></td> 
-                        <td><?php echo $tratamento->Problema->Problema ?></td> 
-                        <td><?php echo $tratamento->Tratamento ?></td> 
-                        <td><?php echo $tratamento->Medico->Nome ?></td> 
-                        <td><?php echo $tratamento->Data ?></td>
-                        <td><a class="btn btn-primary" href="<?php echo route('medicos/Alterar/'. $tratamento->Id); ?>" role="button">Alterar</a></td>
-                        <td>
-                            <form action="<?php echo route('medicos/Eliminar/'. $tratamento->Id); ?>" method="post">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php
-                    }
-                ?>
-            </table>
         </div>
     </main>
     

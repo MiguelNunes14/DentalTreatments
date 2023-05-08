@@ -25,7 +25,7 @@
     <main class="main">
         <img class="img-bg" src="<?php echo route('Images/sorriso.png'); ?>" alt="">
         <div class="conteudo">
-            <form class="m-5" action="<?php echo route('utentes/store'); ?>" onsubmit="return validateNIF()" method="post">
+            <form class="m-5" action="<?php echo route('utentes/store'); ?>" onsubmit="return validateForm()" method="post">
                 <table class="table table-borderless d-table-cell">
                     <tr>
                         <th colspan="2"><h3>Criar Conta de Utente</h3></th>

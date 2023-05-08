@@ -2,7 +2,13 @@
 
 /* Home page */
 $router->get('', function() {
-    require 'Controllers/home.php';
+    if(isset($_SESSION['Medico_id'], $_SESSION['Medico'], $_SESSION['NºMecanografico'])){
+        redirect('medicos/dentes');
+    }else if(isset($_SESSION['Utente_id'], $_SESSION['Utente'], $_SESSION['Email'])){
+        redirect('utentes/dentes');
+    }else{
+        require 'Controllers/home.php';
+    }
 });
 
 //Login do Administrador
@@ -83,6 +89,30 @@ $router->get('medicos/Alterar_Eliminar', function(){
 $router->post('medicos/Alterar_Eliminar/pesquisar', function(){
     if(isset($_SESSION['Medico_id'], $_SESSION['Medico'], $_SESSION['NºMecanografico'])){
         require 'Controllers/medicos.alterar.eliminar.pesquisar.php';
+     }else{
+        redirect('medicos/login');
+    }
+});
+
+$router->get('medicos/Alterar/(\d+)', function($id){
+    if(isset($_SESSION['Medico_id'], $_SESSION['Medico'], $_SESSION['NºMecanografico'])){
+        require 'Controllers/medicos.alterar.php';
+     }else{
+        redirect('medicos/login');
+    }
+});
+
+$router->post('medicos/Alterar/Process/(\d+)', function($id){
+    if(isset($_SESSION['Medico_id'], $_SESSION['Medico'], $_SESSION['NºMecanografico'])){
+        require 'Controllers/medicos.alterar.process.php';
+     }else{
+        redirect('medicos/login');
+    }
+});
+
+$router->delete('medicos/Eliminar/(\d+)', function($id){
+    if(isset($_SESSION['Medico_id'], $_SESSION['Medico'], $_SESSION['NºMecanografico'])){
+        require 'Controllers/medicos.eliminar.process.php';
      }else{
         redirect('medicos/login');
     }

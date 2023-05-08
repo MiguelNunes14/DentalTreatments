@@ -38,7 +38,7 @@
     <main class="main">
         <img class="img-bg" src="<?php echo route('Images/sorriso.png'); ?>" alt="">
         <div class="conteudo">
-            <form class="m-5" action="<?php echo route('medicos/store'); ?>" onsubmit="return validateNIF()" method="post">
+            <form class="m-5" action="<?php echo route('medicos/store'); ?>" onsubmit="return validateForm()" method="post">
                 <table class="table table-borderless d-table-cell">
                     <tr>
                         <th colspan="2"><h3>Criar Conta de Médico</h3></th>
