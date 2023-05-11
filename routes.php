@@ -31,7 +31,11 @@ $router->post('medicos/store', function(){
 
 //Login dos médicos
 $router->get('medicos/login', function() {
-    require 'Views/medicos.login.view.php';
+    if(!isset($_SESSION['Admin'])){
+        require 'Views/medicos.login.view.php';
+    }else{
+        redirect('medicos/create');
+    }
 });
 
 $router->post('medicos/login/process', function() {
@@ -131,7 +135,7 @@ $router->post('medicos/Denticao/Process', function() {
     require 'Controllers/medicos.denticao.process.php';
 });
 
-$router->post('utentes/store', function() {
+$router->post('utentes/store', function() {  
     require 'Controllers/utentes.store.php';
 });
 
