@@ -9,7 +9,7 @@ $connection = Connection::make();
 
 $queryBuilder = new QueryBuilder($connection);
 
-$tratamentos = $queryBuilder->getAll('Tratamentos', 'Miguel\ProjetoFinal\Model\Tratamentos');
+$tratamentos = $queryBuilder->getAllBy('Tratamentos', 'Medico_id', $_SESSION['Medico_id'], 'Miguel\ProjetoFinal\Model\Tratamentos');
 
     foreach($tratamentos as $tratamento){
         $tratamento->Utente = $queryBuilder->findById('Utentes', $tratamento->Utente_id, 'Miguel\ProjetoFinal\Model\Utentes');

@@ -16,6 +16,12 @@ class QueryBuilder
         return $stmt->fetchAll(PDO::FETCH_CLASS, $class);
     }
 
+    public function getAllBy($table, $column, $value, $class = "StdClass"){
+        $stmt = $this->pdo->prepare("SELECT * FROM $table where $column = :value");
+        $stmt->execute(['value' => $value]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, $class);
+    }
+
     public function getTratamentos($utente_id, $FDI, $class = "StdClass"){
         $stmt = $this -> pdo -> prepare("SELECT * from Tratamentos T where Utente_id = :utente AND FDI = :fdi AND Data > DATE_SUB(curdate() ,INTERVAL 6 MONTH) ORDER BY Data");
         $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
